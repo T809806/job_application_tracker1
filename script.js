@@ -54,5 +54,18 @@ mainContainer.addEventListener('click', function(event) {
     const Not = parentNode.querySelector('.Not').innerText
      const Build = parentNode.querySelector('.Build').innerText
 
-   console.log(Mobile, React, Remote, Not, Build);
+  const cardInfo = {
+
+    Mobile,
+    React,
+    Remote,
+    Not,
+    Build
+
+
+  }
+
+  console.log(cardInfo);
+
+
 } )
