@@ -65,7 +65,14 @@ mainContainer.addEventListener('click', function(event) {
 
   }
 
-  console.log(cardInfo);
+  const interviewSelect = interviewList.find(item=> item.Mobile == cardInfo.Mobile)
+
+  if(!interviewSelect) {
+
+    interviewList.push(cardInfo)
+  }
+
+  console.log(interviewList);
 
 
 } )
