@@ -43,12 +43,25 @@ function toggleStyle(id) {
      selected.classList.remove('bg-white','text-[#64748B]')
      selected.classList.add('bg-[#3B82F6]','text-white')
 
+     if(id == 'interview_filter_btn') {
+
+        all_cards_section.classList.add('hidden');
+        filterSection.classList.remove('hidden')
+
+  } else if(id =='all_btn') {
+
+    all_cards_section.classList.remove('hidden');
+     filterSection.classList.add('hidden')
+
+
+  }
+
 }
 
 
 mainContainer.addEventListener('click', function(event) {
 
-    console.log(event.target.classList.contains('interview_btn'));
+    
 
     if(event.target.classList.contains('interview_btn')) {
 
@@ -59,22 +72,27 @@ mainContainer.addEventListener('click', function(event) {
  const Not = parentNode.querySelector('.Not').innerText
  const Build = parentNode.querySelector('.Build').innerText
 
+ parentNode.querySelector('.Not').innerText = 'Applied'
+
   const cardInfo = {
 
     Mobile,
     React,
     Remote,
-    Not,
+    Not:'Applied',
     Build
 }
 
   const interviewSelect = interviewList.find(item=> item.Mobile == cardInfo.Mobile)
+  
 
   if(!interviewSelect) {
 
     interviewList.push(cardInfo)
   }
 
+
+calculateCounting ()
   renderInterview()
 
 }
@@ -94,8 +112,8 @@ function renderInterview() {
         div.className = 'flex flex-col md:flex-row md:justify-between gap-6 bg-white border border-black/15 rounded-2xl p-6 mt-5'
         div.innerHTML = `  <div class="space-y-6  "> 
 
-        <h4 class=" Mobile text-[#002C5C] font-semibold text-xl"> Mobile First Corp </h4>
-        <p class=" React text-[#323B49] text-[18px]"> React Native Developer </p>
+        <h4 class=" Mobile text-[#002C5C] font-semibold text-xl"> ${interview.Mobile} </h4>
+        <p class=" React text-[#323B49] text-[18px]"> ${interview.React} </p>
         <p class=" Remote text-[#323B49]"> Remote • Full-time • $130,000 - $175,000 </p>
         <p class=" Not bg-[#F1F2F4] text-[#002C5C] font-semibold inline-block px-3 py-1"> NOT APPLIED  </p>
         <p class=" Build text-[#323B49]"> Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide. </p>
@@ -116,5 +134,9 @@ function renderInterview() {
 </div>
 
 `
+
+filterSection.appendChild(div)
+
+
     }
 }    
