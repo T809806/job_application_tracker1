@@ -30,6 +30,6 @@ Attach one listener to parent, handle child events via event.target. Useful for 
 
 5. What is the difference between preventDefault() and stopPropagation() methods?
 
-preventDefault() → stops browser default (e.g., link, form)
+preventDefault() → stops browser default (link, form)
 
 stopPropagation() → stops event bubbling to parents
