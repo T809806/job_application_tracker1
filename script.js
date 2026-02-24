@@ -149,6 +149,28 @@ calculateCounting ()
   
 }
 
+if(event.target.classList.contains('delete_btn') || event.target.closest('.delete_btn')) {
+
+     const card = event.target.closest('.rounded-2xl')
+
+    card.remove()
+
+    const jobTitle = card.querySelector('.Mobile').innerText
+
+   interviewList = interviewList.filter(item => item.Mobile !== jobTitle)
+
+    rejectedList = rejectedList.filter(item => item.Mobile !== jobTitle)
+
+  calculateCounting()
+
+    if(currentStatus === 'interview_filter_btn') {
+        renderInterview()
+    } else if(currentStatus === 'rejected_filter_btn') {
+        renderReject()
+    }
+
+} 
+
 } )
 
 function renderInterview() {
