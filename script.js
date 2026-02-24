@@ -1,5 +1,6 @@
 let interviewList =[];
-let rejectedList =[];
+let rejectedList =[]
+let currentStatus ='all'
 
 
 let total = document.getElementById('total');
@@ -38,6 +39,7 @@ function toggleStyle(id) {
      rejectedFilterBtn.classList.add('bg-white','text-[#64748B]')
 
      const selected = document.getElementById(id)
+     currentStatus = id
      //console.log(selected);
 
      selected.classList.remove('bg-white','text-[#64748B]')
@@ -47,6 +49,7 @@ function toggleStyle(id) {
 
         all_cards_section.classList.add('hidden');
         filterSection.classList.remove('hidden')
+        renderInterview()
 
   } else if(id =='all_btn') {
 
@@ -57,6 +60,7 @@ function toggleStyle(id) {
   } else if (id =='rejected_filter_btn') {
       all_cards_section.classList.add('hidden');
         filterSection.classList.remove('hidden')
+        renderReject()
 
   }
 
@@ -97,6 +101,13 @@ mainContainer.addEventListener('click', function(event) {
 
      rejectedList = rejectedList.filter(item=> item.Mobile != cardInfo.Mobile)
 
+      if (currentStatus =='rejected_filter_btn') {
+
+       renderReject();
+
+  }
+
+
 calculateCounting ()
   renderInterview()
 
@@ -132,13 +143,16 @@ calculateCounting ()
 
   interviewList = interviewList.filter(item=> item.Mobile != cardInfo.Mobile)
 
-calculateCounting ()
-  renderReject()
+  if (currentStatus =='interview_filter_btn') {
 
+       renderInterview();
+
+  }
+
+calculateCounting ()
+  
 }
 
-
- 
 } )
 
 function renderInterview() {
@@ -155,14 +169,14 @@ function renderInterview() {
 
         <h4 class=" Mobile text-[#002C5C] font-semibold text-xl"> ${interview.Mobile} </h4>
         <p class=" React text-[#323B49] text-[18px]"> ${interview.React} </p>
-        <p class=" Remote text-[#323B49]"> Remote • Full-time • $130,000 - $175,000 </p>
-        <p class=" Not bg-[#F1F2F4] text-[#002C5C] font-semibold inline-block px-3 py-1"> NOT APPLIED  </p>
-        <p class=" Build text-[#323B49]"> Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide. </p>
+        <p class=" Remote text-[#323B49]"> Remote • Full-time • $130,000 - $175,000"> ${interview.Remote} </p>
+        <p class=" Not bg-[#F1F2F4] text-[#002C5C] font-semibold inline-block px-3 py-1">  Applied  </p>
+        <p class=" Build text-[#323B49]"> ${interview.Build} </p>
 
     <div class="space-x-1"> 
 
-    <button class="text-[#10B981] text-xl font-bold rounded border border-[#10B981] px-8 py-2 mt-5"> Interview </button>
-    <button class="text-[#EF4444] text-xl font-bold rounded border border-[#EF4444] px-8 py-2 mt-5"> Rejected </button>
+    <button class="interview_btn text-[#10B981] text-xl font-bold rounded border border-[#10B981] px-8 py-2 mt-5"> Interview </button>
+    <button class="rejected_btn text-[#EF4444] text-xl font-bold rounded border border-[#EF4444] px-8 py-2 mt-5"> Rejected </button>
 
     </div>
 
@@ -198,9 +212,9 @@ function renderReject() {
 
         <h4 class=" Mobile text-[#002C5C] font-semibold text-xl"> ${reject.Mobile} </h4>
         <p class=" React text-[#323B49] text-[18px]"> ${reject.React} </p>
-        <p class=" Remote text-[#323B49]"> Remote • Full-time • $130,000 - $175,000 </p>
-        <p class=" Not bg-[#F1F2F4] text-[#002C5C] font-semibold inline-block px-3 py-1"> NOT APPLIED  </p>
-        <p class=" Build text-[#323B49]"> Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide. </p>
+        <p class=" Remote text-[#323B49]"> Remote • Full-time • $130,000 - $175,000"> ${reject.Remote} </p>
+        <p class=" Not bg-[#F1F2F4] text-[#002C5C] font-semibold inline-block px-3 py-1"> Rejected  </p>
+        <p class=" Build text-[#323B49]"> ${reject.Build} </p>
 
     <div class="space-x-1"> 
 
