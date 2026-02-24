@@ -22,8 +22,6 @@ function calculateCounting () {
        total.innerText = all_cards_section.children.length
        interview.innerText = interviewList.length
        rejected.innerText = rejectedList.length
-
-
 }
 
 calculateCounting ()
@@ -68,8 +66,6 @@ function toggleStyle(id) {
 
 
 mainContainer.addEventListener('click', function(event) {
-
-    
 
     if(event.target.classList.contains('interview_btn')) {
 
@@ -159,6 +155,17 @@ function renderInterview() {
 
     filterSection.innerHTML = ''
 
+     if(interviewList.length === 0) {
+        showEmptyMessage('Interview')
+        return
+    }
+
+    for(let interview of interviewList) {
+        
+    }
+
+}
+
     for(let interview of interviewList) { 
         console.log(interview);
 
@@ -193,16 +200,27 @@ function renderInterview() {
 filterSection.appendChild(div)
 
 
-    }
-}    
-
-
+ }
+    
 
 function renderReject() {
 
     filterSection.innerHTML = ''
 
-    for(let reject of rejectedList) { 
+
+ if(rejectedList.length === 0) {
+        showEmptyMessage('Rejected')
+        return
+    }
+
+    for(let reject of rejectedList) {
+        
+    }
+
+}
+
+
+ for(let reject of rejectedList) { 
         console.log(reject);
 
         let div = document.createElement('div');
@@ -235,6 +253,24 @@ function renderReject() {
 
 filterSection.appendChild(div)
 
+ }
 
-    }
-}    
+
+function showEmptyMessage(type) {
+
+    filterSection.innerHTML = `
+        <div class="flex flex-col items-center justify-center mt-20 text-center">
+
+             <img src="jobs.png" class="w-24 h-24 mb-6" alt="No Jobs Icon">
+
+            <h2 class="text-2xl font-semibold text-[#002C5C]">
+                No Jobs Available
+            </h2>
+
+            <p class="text-[#64748B] mt-2">
+                Check back soon for new job opportunities
+            </p>
+
+        </div>
+    `
+}
